@@ -16,7 +16,7 @@ import './directives/index';
 import './routes';
 import './polyfills';
 
-import { DoBootstrap, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { UpgradeModule } from '@angular/upgrade/static';
 
@@ -24,16 +24,13 @@ import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { RouterModule, Routes } from '@angular/router';
-
-// import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
-// if (environment.production) {
-//   enableProdMode();
-// }
+if (environment.production) {
+  enableProdMode();
+}
 
-// platformBrowserDynamic().bootstrapModule(AppModule)
-//   .catch(err => console.error(err));
+// import { AppModule } from './app/app.module';
 
 @NgModule({
   imports: [
@@ -48,11 +45,8 @@ export class AppModule{
   }
 }
 
-// export class AppModule {}
-
-
 platformBrowserDynamic().bootstrapModule(AppModule).then(PlatformRef =>{
   console.log("Bootstrapping in Hybrid mode with Angular & AngularJS");
   const upgrade = PlatformRef.injector.get(UpgradeModule) as UpgradeModule;
   upgrade.bootstrap(document.body,['weatherApp']);
-});
+}).catch(err => console.error(err));
