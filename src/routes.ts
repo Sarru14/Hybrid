@@ -1,5 +1,5 @@
 angular.module("weatherApp")
-  .config(function ($routeProvider: any,$locationProvider:any) {
+  .config(function ($routeProvider: any,$locationProvider: any) {
     $routeProvider
       .when("/", {
         template: '<home city="city"></home>',

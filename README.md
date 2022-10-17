@@ -1,27 +1,53 @@
-# Hybrid
+## Hybrid
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.6.
+- Creare un progetto Angular 14 con `ng new`
+- Copiare all'interno i componenti di AngularJS, preforibilmente nella folder src
+- modificare l'index.html appena importato in modo che non includa la vecchia app tramite la direttiva `ng-app`, quindi commentare l'eventuale riga `<html lang="en-us" ng-app="weatherApp">`
+- Correggere eventuali path nell'angular.json
+- Nel routes.ts aggiungere il parametro `$locationProvider:any` alla funzione di config e richiamare `$locationProvider.hashPrefix('');` dopo aver definito l'ultima route.
+- Nel main.ts aggiungere le linee
+  ```Typescript
+  //import { AppModule } from './app/app.module';
 
-## Development server
+  @NgModule({
+    imports: [
+      BrowserModule,
+      UpgradeModule,
+      RouterModule,
+    ]
+  })
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+  export class AppModule{
+    ngDoBootstrap(){
+    }
+  }
 
-## Code scaffolding
+  platformBrowserDynamic().bootstrapModule(AppModule).then(PlatformRef =>{
+    console.log("Bootstrapping in Hybrid mode with Angular & AngularJS");
+    const upgrade = PlatformRef.injector.get(UpgradeModule) as UpgradeModule;
+    upgrade.bootstrap(document.body,['weatherApp']);
+  }).catch(err => console.error(err));
+  ```
+  queste linee faranno girare l'app come AngularJS, per tornare a fare girare l'app in Angular 14 sarà necessario sostituire il codice sopra con quanto segue:
+  ```Typescript
+  import { AppModule } from './app/app.module';
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+  // @NgModule({
+  //   imports: [
+  //     BrowserModule,
+  //     UpgradeModule,
+  //     RouterModule,
+  //   ]
+  // })
 
-## Build
+  // export class AppModule{
+  //   ngDoBootstrap(){
+  //   }
+  // }
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+  platformBrowserDynamic().bootstrapModule(AppModule).then(PlatformRef =>{
+    console.log("Bootstrapping in Hybrid mode with Angular & AngularJS");
+    const upgrade = PlatformRef.injector.get(UpgradeModule) as UpgradeModule;
+    upgrade.bootstrap(document.body,['weatherApp']);
+  }).catch(err => console.error(err));
+  ```
