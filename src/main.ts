@@ -20,30 +20,24 @@ if (environment.production) {
   enableProdMode();
 }
 
-// import { AppModule } from './app/app.module';
+import { AppModule } from './app/app.module';
 
-@NgModule({
-  imports: [
-    BrowserModule,
-    UpgradeModule,
-  ]
-})
-
-export class AppModule implements DoBootstrap {
-  constructor(private upgrade: UpgradeModule) {}
-  ngDoBootstrap() {
-      this.upgrade.bootstrap(document.documentElement, ['weatherApp'])
-  }
-}
+// @NgModule({
+//   imports: [
+//     BrowserModule,
+//     UpgradeModule,
+//     RouterModule,
+//   ]
+// })
 
 // export class AppModule{
 //   ngDoBootstrap(){
 //   }
 // }
 
-// platformBrowserDynamic().bootstrapModule(AppModule).then(PlatformRef =>{
-//   console.log("Bootstrapping in Hybrid mode with Angular & AngularJS");
-//   const upgrade = PlatformRef.injector.get(UpgradeModule) as UpgradeModule;
-//   upgrade.bootstrap(document.body,['weatherApp']);
-// }).catch(err => console.error(err));
+platformBrowserDynamic().bootstrapModule(AppModule).then(PlatformRef =>{
+  console.log("Bootstrapping in Hybrid mode with Angular & AngularJS");
+  const upgrade = PlatformRef.injector.get(UpgradeModule) as UpgradeModule;
+  upgrade.bootstrap(document.body,['weatherApp']);
+}).catch(err => console.error(err));
 

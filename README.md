@@ -55,3 +55,9 @@
     upgrade.bootstrap(document.body,['weatherApp']);
   }).catch(err => console.error(err));
   ```
+***
+In questa maniera si ottiene un progetto basato su Angular 14 che ha la possibilità di far funzonare codice relativo a componenti Angular 14 __OPPURE__ codice AngularJS in retrocompatibilità.
+
+Per lo step successivo, ossia ottenere un progetto che pubblichi una pagina che funziona con componenti Angular e AngularJS è __NECESSARIO__ trasformare tutti i file di AngularJS (direttive, controller e servizi) in __componenti__ ossia l'unico formato che è in grado di utilizzare Angular 14.
+
+La parte fondamentale di questo discorso rimane però la stessa, __TUTTA__ l'applicazione __DEVE__ essere allineata sulla stessa tecnologia.
