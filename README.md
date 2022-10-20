@@ -1,5 +1,8 @@
 ## Hybrid
+#### Lo scopo di questo progetto era fare un progetto che permettesse di lanciare entrambe le versioni di Angualr.
 
+***
+>Progetto AngularJS [originario](https://github.com/flimina/angularJS) creato da Fabiano Limina
 - Creare un progetto Angular 14 con `ng new`
 - Copiare all'interno i componenti di AngularJS, preforibilmente nella folder src
 - modificare l'index.html appena importato in modo che non includa la vecchia app tramite la direttiva `ng-app`, quindi commentare l'eventuale riga `<html lang="en-us" ng-app="weatherApp">`
