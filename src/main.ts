@@ -6,7 +6,7 @@ import './directives/index';
 import './routes';
 import './polyfills';
 
-import { NgModule } from '@angular/core';
+import { DoBootstrap, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { UpgradeModule } from '@angular/upgrade/static';
 
@@ -26,17 +26,24 @@ if (environment.production) {
   imports: [
     BrowserModule,
     UpgradeModule,
-    RouterModule,
   ]
 })
 
-export class AppModule{
-  ngDoBootstrap(){
+export class AppModule implements DoBootstrap {
+  constructor(private upgrade: UpgradeModule) {}
+  ngDoBootstrap() {
+      this.upgrade.bootstrap(document.documentElement, ['weatherApp'])
   }
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule).then(PlatformRef =>{
-  console.log("Bootstrapping in Hybrid mode with Angular & AngularJS");
-  const upgrade = PlatformRef.injector.get(UpgradeModule) as UpgradeModule;
-  upgrade.bootstrap(document.body,['weatherApp']);
-}).catch(err => console.error(err));
+// export class AppModule{
+//   ngDoBootstrap(){
+//   }
+// }
+
+// platformBrowserDynamic().bootstrapModule(AppModule).then(PlatformRef =>{
+//   console.log("Bootstrapping in Hybrid mode with Angular & AngularJS");
+//   const upgrade = PlatformRef.injector.get(UpgradeModule) as UpgradeModule;
+//   upgrade.bootstrap(document.body,['weatherApp']);
+// }).catch(err => console.error(err));
+
