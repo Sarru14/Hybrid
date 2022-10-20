@@ -5,6 +5,7 @@
 >Progetto AngularJS [originario](https://github.com/flimina/angularJS) creato da Fabiano Limina
 - Creare un progetto Angular 14 con `ng new`
 - Copiare all'interno i componenti di AngularJS, preforibilmente nella folder src
+  - eventualmente ricordarsi di aggiungere le dependencies (del progetto in AngularJS) che mancano al progetto nuovo: basta fare un copia/incolla dentro il `package.json`.
 - modificare l'index.html appena importato in modo che non includa la vecchia app tramite la direttiva `ng-app`, quindi commentare l'eventuale riga `<html lang="en-us" ng-app="weatherApp">`
 - Correggere eventuali path nell'angular.json
 - Nel routes.ts aggiungere il parametro `$locationProvider:any` alla funzione di config e richiamare `$locationProvider.hashPrefix('');` dopo aver definito l'ultima route.
