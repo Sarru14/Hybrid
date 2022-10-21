@@ -7,6 +7,9 @@ angular.module("weatherApp")
 
       .when("/forecast", {
         template: "<forecast></forecast>",
+      })
+      .when("/verifica", {
+        template: "<app-verifica></app-verifica>",
       });
       $locationProvider.hashPrefix('');
 });

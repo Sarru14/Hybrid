@@ -8,6 +8,7 @@ angular.module("weatherApp").directive("home", function () {
                         <input type="text" ng-model="$ctrl.city" class="form-control" />
                     </div>
                     <a href="#/forecast" class="btn btn-primary">Get Forecast</a>
+                    <a href="#/verifica" class="btn btn-primary">Get Angular 14</a>
                 </div>
               </div>`,
     replace: true,
