@@ -15,7 +15,7 @@
           "options": {
             "outputPath": "dist/hybrid",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "main": "src/app/app.module.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [

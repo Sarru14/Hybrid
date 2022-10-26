@@ -4,7 +4,6 @@ angular.module("weatherApp")
       .when("/", {
         template: '<home city="city"></home>',
       })
-
       .when("/forecast", {
         template: "<forecast></forecast>",
       })
